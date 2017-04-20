@@ -1,0 +1,50 @@
+{
+  "name": "your-lib-name",
+  "version": "1.0.0",
+  "description": "yourLibDescription",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
+  "jsnext": "lib/esm/index.js",
+  "types": "lib/esm/index.d.ts",
+  "scripts": {
+    "precommit": "npm run lint",
+    "prepush": "npm run lint",
+    "start": "tsc -m es6 --outDir lib/esm -w",
+    "clean:umd": "rimraf ./lib/umd",
+    "clean:esm": "rimraf ./lib/esm",
+    "clean:cjs": "rimraf ./lib/cjs",
+    "clean:all": "npm run clean:umd && npm run clean:esm && npm run clean:cjs",
+    "build:umd": "npm run clean:umd && rollup --config rollup.config.js",
+    "build:esm": "tsc -m es6 --outDir lib/esm",
+    "build:cjs": "tsc",
+    "build:all": "npm run build:umd && npm run build:esm && npm run build:cjs",
+    "build": "npm run clean:all && npm run build:all",
+    "lint": "tslint --project ./tsconfig.json --type-check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+yourGitURL"
+  },
+  "author": "epiqueras",
+  "license": "MIT",
+  "bugs": {
+    "url": "yourBugsURL"
+  },
+  "homepage": "yourHomepageURL",
+  "devDependencies": {
+    "husky": "^0.13.3",
+    "rimraf": "^2.6.1",
+    "rollup": "^0.41.6",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-builtins": "^2.1.0",
+    "rollup-plugin-node-globals": "^1.1.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-typescript": "^0.8.1",
+    "rollup-watch": "^3.2.2",
+    "tslint": "<5",
+    "tslint-microsoft-contrib": "^4.0.1",
+    "typescript": "^2.2.2"
+  },
+  "dependencies": {
+  }
+}
