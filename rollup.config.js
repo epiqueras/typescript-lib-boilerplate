@@ -7,18 +7,13 @@ import builtinsGlobals from 'rollup-plugin-node-globals'
 export default {
   entry: 'src/index.ts',
   format: 'umd',
-  dest: 'lib/umd/tudi.js',
-  moduleName: 'tudi',
+  dest: 'lib/umd/yourLib.js',
+  moduleName: 'yourLib',
 
   plugins: [
     typescript({ typescript: require('typescript')} ),
     resolveNodeModules({ module: true, jsnext: true, main: true }),
-    commonjs({
-      namedExports: {
-        'node_modules/pixi.js/lib/index.js': ['autoDetectRenderer', 'Container'],
-        'node_modules/pixi.js/lib/polyfill/Math.sign.js': ['default'],
-      }
-    }),
+    commonjs(),
     builtins(),
     builtinsGlobals(),
   ],
